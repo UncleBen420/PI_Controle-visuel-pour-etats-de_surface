@@ -31,10 +31,8 @@ class ImageGetter:
         #get raw data from camera
         #for Python2.x function returns string
         #for Python3.x function returns bytes
-        data_raw = img.get_image_data_raw()
+        data = img.get_image_data_numpy()
 
-        #transform data to list
-        data = list(data_raw)
 
         #stop data acquisition
         print('Stopping acquisition...')

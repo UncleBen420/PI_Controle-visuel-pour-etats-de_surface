@@ -86,7 +86,6 @@ class Model:
         return x / 255.
 
     def preprocessImage(self, image):
-
         kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(10,10))
         erode = cv2.erode(image,kernel)
         image = image - erode
