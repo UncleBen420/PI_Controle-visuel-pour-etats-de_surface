@@ -1,0 +1,37 @@
+# La raspberry pi étant un SoC arm, ne possède pas forcément toutes les librairies standard. Pour certaines, il faut faire des installations spécifique à un système arm. 
+
+# Librairie ximea: ximea est la marque de la caméra utilisée par le système. C'est une caméra usb mais elle n'est pas interfacée de la même façon qu'une standard, une librairie spécifique doit être installée.
+pour plus d'information: https://www.ximea.com/support/projects/apis/wiki/Raspberry_Pi_4_Benchmarks
+
+sudo apt update
+sudo apt upgrade
+wget https://www.ximea.com/downloads/recent/XIMEA_Linux_SP.tgz
+tar xzf XIMEA_Linux_SP.tgz
+cd package
+./install
+/boot/firmware/cmdline.txt 
+# usbcore.usbfs_memory_mb=0
+
+should show 0:
+cat /sys/module/usbcore/parameters/usbfs_memory_mb
+
+# Pour l'écran tactile,les commande suivante doivent être utilisée.
+
+nano /boot/config.txt
+
+#masqué
+#camera_auto_detect=1
+#dtoverlay=vc4-kms-v3d
+
+#ajouter 
+dtoverlay=vc4-fkms-v3d
+start_x=1 
+
+sudo reboot
+
+# Pour installer scikit image:
+
+# Scimage
+sudo apt-get install python3-matplotlib python3-numpy python3-pil python3-scipy python3-tk
+sudo apt-get install build-essential cython3
+pip3 install -U scikit-image
